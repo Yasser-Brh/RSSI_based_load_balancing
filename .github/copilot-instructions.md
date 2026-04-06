@@ -1,0 +1,7 @@
+- [x] Clarified project scope: Python control-loop for OpenWISP Wi-Fi experimentation.
+- [x] Scaffolded a small project in the current workspace.
+- [ ] Keep secrets in environment variables or a local `.env` file only.
+- [ ] Prefer Python standard library unless a dependency is clearly justified.
+- [ ] Keep the control logic simple and reproducible for a 3-page demo paper.
+- [ ] Store telemetry and actions in SQLite for later plotting/export.
+- [ ] Document every CLI command in README when behavior changes.

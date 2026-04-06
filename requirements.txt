@@ -1,0 +1,4 @@
+# Core loop – stdlib only, no extra installs needed.
+# Plotting only (optional, for plot_results.py):
+matplotlib>=3.7
+numpy>=1.24
