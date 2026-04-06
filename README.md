@@ -7,7 +7,7 @@ A Python closed-loop control system that polls two Wi-Fi 7 Access Points (APs) r
 - Fetches a token from OpenWISP or uses static token from .env
 - Polls two APs through monitoring GET endpoints
 - Stores AP, radio, station, and control-action data in SQLite database
-- Runs a RSSI based load balancig algorithm
+- Runs a RSSI-based load balancing algorithm
 - Sends POST commands to APs through the OpenWISP controller
 - Exports plotting-ready CSV
 
@@ -19,6 +19,16 @@ A Python closed-loop control system that polls two Wi-Fi 7 Access Points (APs) r
 - Sort its clients by ascending RSSI (weakest signal first — most likely to roam)
 - Disassociate `⌊diff / 2⌋` clients via `hostapd_cli disassociate <mac>`
 - Wait `OPENWISP_CONTROL_COOLDOWN` seconds for stations to reassociate before re-evaluating
+
+## Results
+
+**Stations per AP over time** — during the baseline phase (left), each AP operates independently with no knowledge of the other's load, leading to a persistent client imbalance. Once the control loop is active (right), the algorithm detects the imbalance and disassociates the weakest-RSSI clients from the overloaded AP, prompting them to roam and restoring balance within a few iterations.
+
+![Stations per AP Plot](plots/clients_per_ap.png)
+
+**RSSI per station over time** — after disassociation events, stations that were at the edge of the overloaded AP's coverage reconnect to the closer, less-loaded AP, resulting in a higher average RSSI across the network.
+
+![RSSI per Station Plot](plots/rssi_per_station.png)
 
 ## Project layout
 
